@@ -1,11 +1,17 @@
-const stats = document.querySelector(".stats-strip");
+window.addEventListener("load", () => {
 
-const observer = new IntersectionObserver(entries=>{
- entries.forEach(entry=>{
-   if(entry.isIntersecting){
-     stats.classList.add("visible");
-   }
- })
-},{threshold:0.2})
+const elements = document.querySelectorAll(".reveal");
 
-observer.observe(stats)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+});
+
+elements.forEach(el => {
+  observer.observe(el);
+});
+
+});

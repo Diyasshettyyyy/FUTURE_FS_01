@@ -1,29 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-function loadSection(id, path) {
-  fetch(path)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load ${path}`);
-      }
-      return response.text();
-    })
-    .then(data => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.innerHTML = data;
-      } else {
-        console.warn(`Element #${id} not found in index.html`);
-      }
-    })
-    .catch(error => {
-      console.error("Section load error:", error);
-    });
-}
+  function loadSection(id, path) {
+    fetch(path)
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to load ${path}`);
+        return response.text();
+      })
+      .then(data => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = data;
+        else console.warn(`Element #${id} not found`);
+      })
+      .catch(error => console.error("Section load error:", error));
+  }
 
-loadSection("hero", "sections/hero.html");
-loadSection("about", "sections/about.html");
-loadSection("projects", "sections/projects.html");
-loadSection("contact", "sections/contact.html");
-loadSection("footer", "components/footer.html");
+  loadSection("hero", "sections/hero.html");
+  loadSection("about", "sections/about.html");
+  loadSection("projects", "sections/projects.html");
+  loadSection("contact", "sections/contact.html");
+  
+
 });

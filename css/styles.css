@@ -535,6 +535,7 @@ background:#f3eee6;
     grid-template-columns:1fr;
     padding:80px 24px;
     gap:48px;
+    font-style: italic;
   }
 
 }

@@ -1,15 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
 
-fetch("/components/navbar.html")
-.then(res => res.text())
-.then(data => {
-document.getElementById("navbar").innerHTML = data;
-});
+  function loadComponent(id, path1, path2) {
+    fetch(path1)
+      .then(res => {
+        if (!res.ok) return fetch(path2);
+        return res;
+      })
+      .then(res => res.text())
+      .then(data => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = data;
+      })
+      .catch(err => console.error("Component error:", err));
+  }
 
-fetch("/components/footer.html")
-.then(res => res.text())
-.then(data => {
-document.getElementById("footer").innerHTML = data;
-});
-
+  loadComponent("navbar", "components/navbar.html", "../components/navbar.html");
+  loadComponent("footer", "components/footer.html", "../components/footer.html"); // ✅ Only here
+  
 });
