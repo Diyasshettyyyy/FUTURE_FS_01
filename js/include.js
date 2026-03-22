@@ -1,12 +1,11 @@
 window.addEventListener("load", () => {
 
-  function loadComponent(id, path1, path2) {
-    fetch(path1)
+  function loadComponent(id, path) {
+    fetch(path)
       .then(res => {
-        if (!res.ok) return fetch(path2);
-        return res;
+        if (!res.ok) throw new Error(`Failed to load ${path}`);
+        return res.text();
       })
-      .then(res => res.text())
       .then(data => {
         const el = document.getElementById(id);
         if (el) el.innerHTML = data;
@@ -14,7 +13,11 @@ window.addEventListener("load", () => {
       .catch(err => console.error("Component error:", err));
   }
 
-  loadComponent("navbar", "components/navbar.html", "../components/navbar.html");
-  loadComponent("footer", "components/footer.html", "../components/footer.html"); // ✅ Only here
-  
+  // Detect if we're inside a subfolder
+  const isSubfolder = window.location.pathname.includes('/sections/');
+  const prefix = isSubfolder ? '../' : '';
+
+  loadComponent("navbar", `${prefix}components/navbar.html`);
+  loadComponent("footer", `${prefix}components/footer.html`);
+
 });

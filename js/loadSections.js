@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const el = document.getElementById(id);
         if (el) el.innerHTML = data;
-        else console.warn(`Element #${id} not found`);
       })
       .catch(error => console.error("Section load error:", error));
   }
@@ -18,6 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSection("about", "sections/about.html");
   loadSection("projects", "sections/projects.html");
   loadSection("contact", "sections/contact.html");
-  
 
 });
