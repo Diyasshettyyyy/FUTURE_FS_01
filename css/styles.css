@@ -194,24 +194,6 @@ color:white !important;
  margin-top:20px;
 }
 
-.hero-divider{
-width:100%;
-height:120px;
-background:#0d0d0d;
-
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.hero-divider::after{
-content:"SCROLL";
-font-family:'DM Mono', monospace;
-font-size:11px;
-letter-spacing:.3em;
-color:#777;
-}
-
 .btn-dark{
  background:var(--ink);
  color:var(--cream);
